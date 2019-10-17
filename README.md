@@ -19,5 +19,11 @@ A Big Data and advanced analytics exercise using Databricks. The use case in thi
 
 *The Kaggle PaySim dataset is stored in <a href="https://help.github.com/en/articles/versioning-large-files">Git LFS</a>.
 
+## Technical requirements
+<ul>
+  <li>Deploy and Azure Databricks workspace</li>
+  <li>Deploy an Azure Data Science VM (optional)</li>
+  </ul>
+
 ## References
 <a href="https://www.kaggle.com/ntnu-testimon/paysim1/download">Kaggle Synthetic Financial Datasets for Fraud Detection</a>
