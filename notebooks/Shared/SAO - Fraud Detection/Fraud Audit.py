@@ -127,6 +127,50 @@ display(df)
 
 # COMMAND ----------
 
+# MAGIC %md For this, we will use PySpark. This is a combination of Python and Spark to address big data. <a href="https://www.edureka.co/blog/pyspark-programming/">Find out more about PySpark</a>.<br>
+# MAGIC  <img src="https://d1jnx9ba8s6j9r.cloudfront.net/blog/wp-content/uploads/2018/07/PySpark.png" width=548 height=74>
+
+# COMMAND ----------
+
+from pyspark.sql import functions as F
+
+# Rules to Identify Known Fraud-based
+df = df.withColumn("label", 
+                   F.when(
+                     (
+                       (df.oldbalanceOrg <= 56900) & (df.type == "TRANSFER") & (df.newbalanceDest <= 105)) | 
+                       (
+                         (df.oldbalanceOrg > 56900) & (df.newbalanceOrig <= 12)) | 
+                           (
+                             (df.oldbalanceOrg > 56900) & (df.newbalanceOrig > 12) & (df.amount > 1160000)
+                           ), 1
+                   ).otherwise(0))
+
+# Calculate proportions
+fraud_cases = df.filter(df.label == 1).count()
+total_cases = df.count()
+fraud_pct = 1.*fraud_cases/total_cases
+
+# Provide quick statistics
+print("Based on these rules, we have flagged %s (%s) fraud cases out of a total of %s cases." % (fraud_cases, fraud_pct, total_cases))
+
+# Create temporary view to review data
+df.createOrReplaceTempView("financials_labeled")
+
+# COMMAND ----------
+
+# MAGIC %md ##Quantify the possible fraud cases
+# MAGIC Based on the known tests/rules, we found 4% of the transactions as potentially fraudulant, but this 4% in number of transactions represents 11% of the total transactions in dollars (see below).
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC select label, count(1) as `Transactions`, 
+# MAGIC         sum(amount) as `Total Amount` 
+# MAGIC from financials_labeled group by label
+
+# COMMAND ----------
+
 # MAGIC %md ##Internal use only - File Operations
 
 # COMMAND ----------
