@@ -30,4 +30,5 @@ A Big Data and advanced analytics exercise using Databricks. The use case in thi
 ## References
 <a href="https://www.kaggle.com/ntnu-testimon/paysim1/download">Kaggle Synthetic Financial Datasets for Fraud Detection</a><br>
 <a href="https://docs.microsoft.com/en-us/azure/azure-databricks/">Azure Databricks documentation</a><br>
-<a href="https://docs.microsoft.com/en-us/azure/azure-databricks/databricks-extract-load-sql-data-warehouse">Perform ETL operations with Azure Databricks</a>
+<a href="https://docs.microsoft.com/en-us/azure/azure-databricks/databricks-extract-load-sql-data-warehouse">Perform ETL operations with Azure Databricks</a><br>
+[Common Markdowns for Azure Databricks Notebooks](https://forums.databricks.com/static/markdown/help.html)
