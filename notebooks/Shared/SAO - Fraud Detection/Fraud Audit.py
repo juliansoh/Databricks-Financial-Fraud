@@ -46,7 +46,7 @@ spark.conf.set(
 
 # MAGIC %md
 # MAGIC 
-# MAGIC ### Step 2: Read the data
+# MAGIC ### Step 2: Read and prep the data
 # MAGIC 
 # MAGIC Now that we have specified our file metadata, we can create a DataFrame. Notice that we use an *option* to specify that we want to infer the schema from the file. We can also explicitly set this to a particular schema if we have one already.
 # MAGIC 
@@ -58,11 +58,38 @@ df = spark.read.format(file_type).option("inferSchema", "true").option("header",
 
 # COMMAND ----------
 
-# MAGIC %md Examine the detected schema
+# Display the inferred schema to see if it is correct
+df.printSchema()
 
 # COMMAND ----------
 
+#Changing the schema type (if necessary)
+
+df = df.select(
+  df.step.cast("integer"),
+  df.type.cast("string"),
+  df.amount.cast("double"),
+  df.nameOrig.cast("string"),
+  df.oldbalanceOrg.cast("double"),
+  df.newbalanceOrig.cast("double"),
+  df.nameDest.cast("string"),
+  df.oldbalanceDest.cast("double"),
+  df.newbalanceDest.cast("double"),
+  df.isFraud.cast("integer"),
+  df.isFlaggedFraud.cast("integer")
+)
+
+# COMMAND ----------
+
+#Recheck to see if schema has be changed successfully
+
 df.printSchema()
+
+# COMMAND ----------
+
+#How many rows do we have in this DataFrame
+
+df.count()
 
 # COMMAND ----------
 
@@ -168,6 +195,81 @@ df.createOrReplaceTempView("financials_labeled")
 # MAGIC select label, count(1) as `Transactions`, 
 # MAGIC         sum(amount) as `Total Amount` 
 # MAGIC from financials_labeled group by label
+
+# COMMAND ----------
+
+# MAGIC %md ##Top Origination / Destination difference pairs (>$1M TotalDesDiff)
+# MAGIC Each bar represents a pair of entities performing a transaction
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC -- where sum(destDiff) >= 10000000.00
+# MAGIC select nameOrig, nameDest, label, TotalOrgDiff, TotalDestDiff
+# MAGIC   from (
+# MAGIC      select nameOrig, nameDest, label, sum(OrgDiff) as TotalOrgDiff, sum(destDiff) as TotalDestDiff 
+# MAGIC        from financials_labeled 
+# MAGIC       group by nameOrig, nameDest, label 
+# MAGIC      ) a
+# MAGIC  where TotalDestDiff >= 1000000
+# MAGIC  limit 100
+
+# COMMAND ----------
+
+# MAGIC %md ##What is the most common type of transactions that are associated to fraud?
+# MAGIC Reviewing the rules-based tests for fraud, it appears that most faudulant transactions are in the category of "Transfer" and "Cash_Out"
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC select type, label, count(1) as `Transactions` from financials_labeled group by type, label
+
+# COMMAND ----------
+
+# MAGIC %md ##Using Machine Learning (ML) models
+
+# COMMAND ----------
+
+# MAGIC %md ###Building a ML Fraud model
+
+# COMMAND ----------
+
+# Initially split our dataset between training and test datasets
+#We will take 80% of the dataset for training purposes and set aside 20% of the dataset for validation
+(train, test) = df.randomSplit([0.8, 0.2], seed=12345)
+
+# Cache the training and test datasets
+train.cache()
+test.cache()
+
+# Print out dataset counts
+print("Total rows: %s, Training rows: %s, Test rows: %s" % (df.count(), train.count(), test.count()))
+
+# COMMAND ----------
+
+from pyspark.ml import Pipeline
+from pyspark.ml.feature import StringIndexer
+from pyspark.ml.feature import OneHotEncoderEstimator
+from pyspark.ml.feature import VectorAssembler
+from pyspark.ml.classification import DecisionTreeClassifier
+
+# Encodes a string column of labels to a column of label indices
+indexer = StringIndexer(inputCol = "type", outputCol = "typeIndexed")
+
+# VectorAssembler is a transformer that combines a given list of columns into a single vector column
+va = VectorAssembler(inputCols = ["typeIndexed", "amount", "oldbalanceOrg", "newbalanceOrig", "oldbalanceDest", "newbalanceDest", "orgDiff", "destDiff"], outputCol = "features")
+
+# Using the DecisionTree classifier model
+dt = DecisionTreeClassifier(labelCol = "label", featuresCol = "features", seed = 54321, maxDepth = 5)
+
+# Create our pipeline stages
+pipeline = Pipeline(stages=[indexer, va, dt])
+
+# COMMAND ----------
+
+# View the Decision Tree model (prior to CrossValidator)
+dt_model = pipeline.fit(train)
+display(dt_model.stages[-1])
 
 # COMMAND ----------
 
