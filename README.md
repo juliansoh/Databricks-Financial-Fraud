@@ -17,6 +17,5 @@ A Big Data and advanced analytics exercise using Databricks. The use case in thi
    <li>Kaggle Synthetic Financial Dataset (also available for <a href="https://www.kaggle.com/ntnu-testimon/paysim1/download">download from Kaggle)</a></li?
 </ul>
 
-
 ## References
 <a href="https://www.kaggle.com/ntnu-testimon/paysim1/download">Kaggle Synthetic Financial Datasets for Fraud Detection</a>
