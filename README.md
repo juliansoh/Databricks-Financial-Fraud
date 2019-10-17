@@ -2,20 +2,20 @@
 A Big Data and advanced analytics exercise using Databricks. The use case in this exercise is to process financial transactions in search of possible fraud. The recordset used in this exercise is from Kaggle and consists of  more than 6 million rows.
 
 ## Audience
-<ul>
-  <li>Data Scientists</li>
-  <li>Data Engineers</li>
-  <li>I.T./Financial Auditors</li>
-  <li>Software Engineers</li>
-  <li>A.I. and ML Engineers</li>
-</ul>
+
+* Data Scientists
+* Data Engineers
+* I.T./Financial Auditors
+* Software Engineers
+*  A.I. and ML Engineers
+
   
 ## Resources in this repository
-<ul>
-  <li>An Azure Databricks notebook</li>
-  <li>101 PowerPoint slide for an audience of I.T. and Financial Auditors</li>
-   <li>Kaggle Synthetic Financial Dataset* (also available for <a href="https://www.kaggle.com/ntnu-testimon/paysim1/download">download from Kaggle)</a></li>
-</ul>
+
+* An Azure Databricks notebook
+* 101 PowerPoint slide for an audience of I.T. and Financial Auditors
+* Kaggle Synthetic Financial Dataset* (also available for [download from Kaggle](https://www.kaggle.com/ntnu-testimon/paysim1/download))
+
 
 *The Kaggle PaySim dataset is stored in <a href="https://help.github.com/en/articles/versioning-large-files">Git LFS</a>.
 
@@ -28,7 +28,7 @@ A Big Data and advanced analytics exercise using Databricks. The use case in thi
 
 
 ## References
-<a href="https://www.kaggle.com/ntnu-testimon/paysim1/download">Kaggle Synthetic Financial Datasets for Fraud Detection</a><br>
-<a href="https://docs.microsoft.com/en-us/azure/azure-databricks/">Azure Databricks documentation</a><br>
-<a href="https://docs.microsoft.com/en-us/azure/azure-databricks/databricks-extract-load-sql-data-warehouse">Perform ETL operations with Azure Databricks</a><br>
+[Kaggle Synthetic Financial Datasets for Fraud Detection](https://www.kaggle.com/ntnu-testimon/paysim1/download)br>
+[Azure Databricks documentation](https://docs.microsoft.com/en-us/azure/azure-databricks/)<br>
+[Perform ETL operations with Azure Databricks](https://docs.microsoft.com/en-us/azure/azure-databricks/databricks-extract-load-sql-data-warehouse)<br>
 [Common Markdowns for Azure Databricks Notebooks](https://forums.databricks.com/static/markdown/help.html)
