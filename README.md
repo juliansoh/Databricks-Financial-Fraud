@@ -14,8 +14,10 @@ A Big Data and advanced analytics exercise using Databricks. The use case in thi
 <ul>
   <li>An Azure Databricks notebook</li>
   <li>101 PowerPoint slide for an audience of I.T. and Financial Auditors</li>
-   <li>Kaggle Synthetic Financial Dataset (also available for <a href="https://www.kaggle.com/ntnu-testimon/paysim1/download">download from Kaggle)</a></li>
+   <li>Kaggle Synthetic Financial Dataset* (also available for <a href="https://www.kaggle.com/ntnu-testimon/paysim1/download">download from Kaggle)</a></li>
 </ul>
+
+*The Kaggle PaySim dataset is stored in <a href="https://help.github.com/en/articles/versioning-large-files">Git LFS</a>.
 
 ## References
 <a href="https://www.kaggle.com/ntnu-testimon/paysim1/download">Kaggle Synthetic Financial Datasets for Fraud Detection</a>
