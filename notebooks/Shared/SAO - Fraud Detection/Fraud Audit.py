@@ -1,6 +1,7 @@
 # Databricks notebook source
-# MAGIC %md #<img width="635" height="132" src="https://www.sao.wa.gov/wp-content/uploads/2018/09/WSAO_LogoLargerIcon-1.png">
+# MAGIC %md #<a href="http://www.sao.wa.gov"><img width="635" height="132" src="https://www.sao.wa.gov/wp-content/uploads/2018/09/WSAO_LogoLargerIcon-1.png"></a>
 # MAGIC #Financial Fraud Audit
+# MAGIC <a href="https://www.linkedin.com/in/julian-soh-307ab24/">Julian Soh</a><br>
 # MAGIC October 2019<br>Microsoft Corporation
 
 # COMMAND ----------
@@ -17,6 +18,12 @@
 # MAGIC   <li>Modern data access and preparation</li>
 # MAGIC   <li>Reviewing, analyzing, and visualizing the data</li>
 # MAGIC   <li>Developing Machine Learning Models</li>
+# MAGIC   
+# MAGIC Goals:
+# MAGIC <ul>
+# MAGIC   <li>Showcase the power of Big Data in Microsoft Azure</li>
+# MAGIC   <li>Demonstrate Intelligent Cloud Computing capabilities - Machine Learning and Advanced Analytics</li>
+# MAGIC   <li>Introduce Azure Databricks as a web-based Unified Analytics Platform that unites people (collaboration), processes and infrastructure (cluster/platform)</li>
 
 # COMMAND ----------
 
