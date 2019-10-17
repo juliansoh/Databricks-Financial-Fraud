@@ -21,9 +21,11 @@ A Big Data and advanced analytics exercise using Databricks. The use case in thi
 
 ## Technical requirements
 <ul>
-  <li>Deploy and Azure Databricks workspace</li>
-  <li>Deploy an Azure Data Science VM (optional)</li>
-  </ul>
+  <li>Provision an Azure Databricks workspace</li>
+  <li>Provision an Azure Blob Storage or Azure Data Lake Services Gen 2</li>
+  <li>Deploy an Azure Data Science VM (optional and ideal if you have limited bandwidth)</li>
+  <li>Download the Kaggle Synthetic Financial Dataset for Fraud Detection (PaySim) from this repository or from Kaggle</li>
+</ul>
 
 ## References
 <a href="https://www.kaggle.com/ntnu-testimon/paysim1/download">Kaggle Synthetic Financial Datasets for Fraud Detection</a>
