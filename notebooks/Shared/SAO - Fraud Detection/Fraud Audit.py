@@ -36,8 +36,8 @@
 
 # COMMAND ----------
 
-storage_account_name = "Blob Storage Name Here"
-storage_account_access_key = "AccessKeyHere"
+storage_account_name = "saadflabblob"
+storage_account_access_key = "zzE+5F19+MuCjM8Pje3XwFboffBKdO/7vVEVbNLf/071sCnrx7fgKGgXP4IQ22zRL9GQebKwJ/pbq4i29uKAwQ=="
 
 # COMMAND ----------
 
