@@ -41,7 +41,7 @@ storage_account_access_key = "zzE+5F19+MuCjM8Pje3XwFboffBKdO/7vVEVbNLf/071sCnrx7
 
 # COMMAND ----------
 
-file_location = "wasbs://raw@saadflabblob.blob.core.windows.net/"
+file_location = "wasbs://raw@saadflabblob.blob.core.windows.net/csv"
 file_type = "csv"
 
 # COMMAND ----------
@@ -668,7 +668,7 @@ with mlflow.start_run(experiment_id = mlflow_experiment_id) as run:
 
 # COMMAND ----------
 
-
+# MAGIC %md ##Internal use only - File Operations
 
 # COMMAND ----------
 
